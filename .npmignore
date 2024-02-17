@@ -1,0 +1,10 @@
+node_modules
+package-lock.json
+.vscode
+.DS_Store
+.eslintignore
+.eslintrc.json
+jest.config.json
+jest-db.json
+src
+tests

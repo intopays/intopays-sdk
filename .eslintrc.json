@@ -1,0 +1,32 @@
+{
+  "extends": "standard-with-typescript",
+  "parserOptions": {
+      "project": "./tsconfig.json"
+  },
+  "rules": {
+    "eqeqeq": "off",
+    "semi": ["error", "always"],
+    "quotes": ["error", "double"],
+    "space-before-function-paren": ["error", "never"],
+    "@typescript-eslint/quotes": "Off",
+    "@typescript-eslint/semi": "Off",
+    "@typescript-eslint/member-delimiter-style": "Off",
+    "@typescript-eslint/space-before-function-paren": "Off",
+    "@typescript-eslint/array-type": ["error", { "default": "generic" }],
+    "@typescript-eslint/consistent-type-definitions": "Off",
+    "@typescript-eslint/strict-boolean-expressions": "Off",
+    "@typescript-eslint/prefer-nullish-coalescing": "Off",
+    "@typescript-eslint/triple-slash-reference": "Off",
+    "@typescript-eslint/consistent-type-assertions": "Off",
+    "@typescript-eslint/method-signature-style": ["error", "method"],
+    "@typescript-eslint/ban-types": "Off",
+    "@typescript-eslint/consistent-type-imports": ["error", {"prefer": "no-type-imports"}],
+    "@typescript-eslint/no-confusing-void-expression": "Off",
+    "@typescript-eslint/no-extraneous-class": "Off",
+    "@typescript-eslint/no-misused-promises": "Off",
+    "@typescript-eslint/restrict-plus-operands": "Off",
+    "@typescript-eslint/no-floating-promises": "Off",
+    "multiline-ternary": "off",
+    "@typescript-eslint/no-useless-constructor": "off"
+  }
+}

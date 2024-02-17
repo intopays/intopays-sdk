@@ -1,0 +1,58 @@
+{
+  "name": "intopays",
+  "version": "1.0.1",
+  "description": "Intopays - Banking Payments",
+  "author": "Lucas Lopes",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "keywords": [
+    "typescript",
+    "decorators",
+    "logger",
+    "cache",
+    "request"
+  ],
+  "scripts": {
+    "start": "npm run test:unit",
+    "serve": "json-server jest-db.json --port=3002",
+    "build": "rm -rf dist && tsc -p tsconfig-build.json --declaration && cp package.json README.md ./dist",
+    "test:build": "rm -rf dist && npm run test:ci && tsc -p tsconfig-build.json --declaration && cp package.json README.md ./dist",
+    "test": "jest --passWithNoTests --silent=false --noStackTrace=false --runInBand",
+    "test:unit": "npm test -- --watch",
+    "test:ci": "npm test -- --coverage",
+    "lint": "eslint .",
+    "lint:fix": "npm run lint -- --fix",
+    "deploy": "npm run build && npm publish",
+    "prepare": "ts-patch install -s"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^7.6.0",
+    "@types/jest": "^29.2.6",
+    "@types/node": "^18.11.18",
+    "@typescript-eslint/eslint-plugin": "^5.48.2",
+    "axios": "^1.2.5",
+    "babel-plugin-module-resolver": "^5.0.0",
+    "eslint": "^8.32.0",
+    "eslint-config-standard-with-typescript": "^31.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.6.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "firebase": "^9.16.0",
+    "git-commit-msg-linter": "^4.5.0",
+    "jest": "^29.3.1",
+    "json-server": "^0.17.1",
+    "ts-jest": "^29.0.5",
+    "ts-node": "^10.9.1",
+    "ts-patch": "^2.1.0",
+    "typescript": "^4.9.4",
+    "typescript-transform-paths": "^3.4.6"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Intopays/intopays-sdk"
+  },
+  "bugs": {
+    "url": "https://github.com/Intopays/intopays-sdk/issues"
+  }
+}
