@@ -1,5 +1,1 @@
-export class Intopays {
-  public hello(): string {
-    return "Hello";
-  }
-}
+export * from "@/app/Intopays";

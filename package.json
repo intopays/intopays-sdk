@@ -1,6 +1,6 @@
 {
   "name": "intopays",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Intopays - Banking Payments",
   "author": "Lucas Lopes",
   "license": "MIT",
@@ -50,9 +50,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Intopays/intopays-sdk"
+    "url": "https://github.com/intopays/intopays-sdk"
   },
   "bugs": {
-    "url": "https://github.com/Intopays/intopays-sdk/issues"
+    "url": "https://github.com/intopays/intopays-sdk/issues"
+  },
+  "dependencies": {
+    "crypto": "^1.0.1"
   }
 }
