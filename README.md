@@ -6,3 +6,35 @@ npm install intopays
 ```shell
 bun install intopays
 ```
+
+## Verificação da Assinatura do Webhook
+
+Este SDK fornece uma maneira simples de verificar a assinatura de um webhook recebido. Você pode usar a função `verifySignature` do objeto `intopays.webhooks` para verificar se a assinatura do webhook é válida.
+
+#### Exemplo de Uso:
+
+```javascript
+const intopays = new Intopays();
+const xWebhookSignature = request.headers['x-webhook-signature'];
+const signature = "c1a4b404-ac83-4378-b60f-9be9bac1fc80";
+const isValid = intopays.webhooks.verifySignature(request.body, xWebhookSignature, signature);
+
+if (isValid) {
+    console.log("Assinatura do webhook inválida");
+} else {
+    console.log("Assinatura do webhook válida");
+}
+```
+
+#### Parâmetros:
+
+- `request.body`: O corpo do webhook recebido.
+- `xWebhookSignature`: A assinatura recebida nos cabeçalhos do webhook.
+- `signature`: A assinatura esperada para verificar a validade.
+
+#### Retorno:
+
+- `true`: Se a assinatura do webhook for inválida.
+- `false`: Se a assinatura do webhook for válida.
+
+Certifique-se de substituir "c1a4b404-ac83-4378-b60f-9be9bac1fc80" pela sua própria chave de assinatura.
