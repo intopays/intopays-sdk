@@ -21,6 +21,8 @@ Este SDK fornece uma maneira simples de verificar a assinatura de um webhook rec
 ##### Exemplo de Uso
 
 ```javascript
+import { Intopays } from "intopays";
+
 const intopays = new Intopays();
 const xWebhookSignature = request.headers["x-webhook-signature"];
 const signature = "c1a4b404-ac83-4378-b60f-9be9bac1fc80";
