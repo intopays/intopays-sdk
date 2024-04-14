@@ -29,9 +29,9 @@ const signature = "c1a4b404-ac83-4378-b60f-9be9bac1fc80";
 const isValid = intopays.webhooks.verifySignature(request.body, xWebhookSignature, signature);
 
 if (isValid) {
-    console.log("Assinatura do webhook inválida");
-} else {
     console.log("Assinatura do webhook válida");
+} else {
+    console.log("Assinatura do webhook inválida");
 }
 ```
 
@@ -43,7 +43,7 @@ if (isValid) {
 
 #### Retorno:
 
-- `true`: Se a assinatura do webhook for inválida.
-- `false`: Se a assinatura do webhook for válida.
+- `true`: Se a assinatura do webhook for válida.
+- `false`: Se a assinatura do webhook for inválida.
 
 Certifique-se de substituir "c1a4b404-ac83-4378-b60f-9be9bac1fc80" pela sua própria chave de assinatura.
