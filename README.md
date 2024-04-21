@@ -53,7 +53,7 @@ if (isValid) {
 Certifique-se de substituir "c1a4b404-ac83-4378-b60f-9be9bac1fc80" pela sua própria chave de assinatura.
 
 
-#### Criar Webhook
+## Criar Webhook
 
 Você pode criar um webhook usando a função `create` do objeto `intopays.webhooks`.
 
@@ -84,7 +84,7 @@ try {
 
 - `Webhook`: Objeto que representa um webhook.
 
-#### Listar Webhooks
+## Listar Webhooks
 
 Você pode listar todos os webhooks registrados usando a função `find` do objeto `intopays.webhooks`.
 
@@ -107,7 +107,7 @@ try {
 
 - `Array<Webhook>`: Lista de objetos que representam webhooks.
 
-#### Pesquisar Webhooks
+## Pesquisar Webhooks
 
 Você também pode pesquisar webhooks por endpoint usando a função `find` do objeto `intopays.webhooks`.
 
@@ -135,7 +135,7 @@ try {
 
 - `Array<Webhook>`: Lista de objetos que representam webhooks.
 
-#### Excluir Webhooks
+## Excluir Webhooks
 
 Você pode excluir um webhook usando a função `delete` do objeto `intopays.webhooks`.
 
