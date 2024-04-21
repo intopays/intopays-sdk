@@ -9,51 +9,15 @@ bun install intopays
 ## Documentaçāo
 
 - [Webhook](#webhook)
-  - [Webhook Signature](#webhook-signature)
   - [Criar Webhook](#criar-webhook)
   - [Listar Webhooks](#listar-webhooks)
   - [Pesquisar Webhooks](#pesquisar-webhooks)
   - [Excluir Webhooks](#excluir-webhooks)
+  - [Webhook Signature](#webhook-signature)
   - [Recebimento de Evento de Boleto via Webhook](#recebimento-de-evento-de-boleto-via-webhook)
   - [Recebimento de Evento PIX via Webhook](#recebimento-de-evento-pix-via-webhook)
 
 ## Webhook
-
-## Verificação da Assinatura do Webhook
-
-Este SDK fornece uma maneira simples de verificar a assinatura de um webhook recebido. Você pode usar a função `verifySignature` do objeto `intopays.webhooks` para verificar se a assinatura do webhook é válida.
-
-#### Webhook Signature:
-##### Exemplo de Uso
-
-```javascript
-import { Intopays } from "intopays";
-
-const intopays = new Intopays();
-const xWebhookSignature = request.headers["x-webhook-signature"];
-const signature = "c1a4b404-ac83-4378-b60f-9be9bac1fc80";
-const isValid = intopays.webhooks.verifySignature(request.body, xWebhookSignature, signature);
-
-if (isValid) {
-    console.log("Assinatura do webhook válida");
-} else {
-    console.log("Assinatura do webhook inválida");
-}
-```
-
-#### Parâmetros:
-
-- `request.body`: O corpo do webhook recebido.
-- `xWebhookSignature`: A assinatura recebida nos cabeçalhos do webhook.
-- `signature`: A assinatura esperada para verificar a validade.
-
-#### Retorno:
-
-- `true`: Se a assinatura do webhook for válida.
-- `false`: Se a assinatura do webhook for inválida.
-
-Certifique-se de substituir "c1a4b404-ac83-4378-b60f-9be9bac1fc80" pela sua própria chave de assinatura.
-
 
 ## Criar Webhook
 
@@ -166,7 +130,43 @@ try {
 - `void`: Sem retorno após a exclusão do webhook
 
 
-## Recebimento de Evento de Boleto via Webhook
+## Verificação da Assinatura do Webhook
+
+Este SDK fornece uma maneira simples de verificar a assinatura de um webhook recebido. Você pode usar a função `verifySignature` do objeto `intopays.webhooks` para verificar se a assinatura do webhook é válida.
+
+#### Webhook Signature:
+##### Exemplo de Uso
+
+```javascript
+import { Intopays } from "intopays";
+
+const intopays = new Intopays();
+const xWebhookSignature = request.headers["x-webhook-signature"];
+const signature = "c1a4b404-ac83-4378-b60f-9be9bac1fc80";
+const isValid = intopays.webhooks.verifySignature(request.body, xWebhookSignature, signature);
+
+if (isValid) {
+    console.log("Assinatura do webhook válida");
+} else {
+    console.log("Assinatura do webhook inválida");
+}
+```
+
+#### Parâmetros:
+
+- `request.body`: O corpo do webhook recebido.
+- `xWebhookSignature`: A assinatura recebida nos cabeçalhos do webhook.
+- `signature`: A assinatura esperada para verificar a validade.
+
+#### Retorno:
+
+- `true`: Se a assinatura do webhook for válida.
+- `false`: Se a assinatura do webhook for inválida.
+
+Certifique-se de substituir "c1a4b404-ac83-4378-b60f-9be9bac1fc80" pela sua própria chave de assinatura.
+
+
+### Recebimento de Evento de Boleto via Webhook
 
 ```json
 {
@@ -230,7 +230,7 @@ try {
 
 ```
 
-## Recebimento de Evento PIX via Webhook
+### Recebimento de Evento PIX via Webhook
 
 ```json
 {
