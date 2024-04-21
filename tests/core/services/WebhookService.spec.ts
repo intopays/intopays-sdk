@@ -31,7 +31,10 @@ describe("WebhookService", () => {
 
     it("should list all registered webhooks successfully", async() => {
       try {
-        const response = await intopays.webhooks.find();
+        const payload = {
+          endpoint: null // search a webhook
+        };
+        const response = await intopays.webhooks.find(payload);
         expect(Array.isArray(response)).toBeTruthy();
         webhooks = response; // add webhooks to the next text
       } catch (error) {
