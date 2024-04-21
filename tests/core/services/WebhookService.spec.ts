@@ -1,20 +1,19 @@
 import { faker } from "@faker-js/faker";
 import Intopays from "@/app/Intopays";
 import { environment } from "@/infra/configs/environment";
+import { Webhook } from "../models/Webhook";
 
 describe("WebhookService", () => {
-  describe("verifySignature", () => {
-    let xWebhookSignature: string;
+  describe("create", () => {
     let intopays: Intopays;
+    let webhooks: Array<Webhook>;
 
     beforeEach(() => {
-      xWebhookSignature = "d87ff6ba065fe7880212b2579cbe100c950ca67a6dc87b4cd7aba0e6921bad93";
       intopays = new Intopays({
-        token: String(environment.development.TOKEN),
+        token: String(environment.test.TOKEN),
         mode: "development"
       });
     });
-
     // webhook create
     it("should create a webhook successfully", async() => {
       const payload = {
@@ -30,6 +29,43 @@ describe("WebhookService", () => {
       }
     });
 
+    it("should list all registered webhooks successfully", async() => {
+      try {
+        const response = await intopays.webhooks.find();
+        expect(Array.isArray(response)).toBeTruthy();
+        webhooks = response; // add webhooks to the next text
+      } catch (error) {
+        console.log(error);
+        expect(error.response.status).toBe(401);
+        expect(error.response.data.status).toBe(false);
+      }
+    });
+
+    it("should delete all registered webhooks successfully", async() => {
+      try {
+        for (const webhook of webhooks) {
+          const response = await intopays.webhooks.delete(webhook.id);
+          expect(response).toBeFalsy();
+        }
+      } catch (error) {
+        console.log(error);
+        expect(error.response.status).toBe(401);
+        expect(error.response.data.status).toBe(false);
+      }
+    });
+  });
+
+  describe("verifySignature", () => {
+    let xWebhookSignature: string;
+    let intopays: Intopays;
+
+    beforeEach(() => {
+      xWebhookSignature = "d87ff6ba065fe7880212b2579cbe100c950ca67a6dc87b4cd7aba0e6921bad93";
+      intopays = new Intopays({
+        token: String(environment.development.TOKEN),
+        mode: "development"
+      });
+    });
     // signature
     it("should verify a signature correctly", () => {
       const payload = {
