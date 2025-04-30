@@ -20,6 +20,32 @@ npm install intopays
 ```shell
 bun install intopays
 ```
+
+## Inicialização
+
+Você pode inicializar a SDK da seguinte maneira:
+
+```javascript
+import { Intopays } from "intopays";
+
+const intopays = new Intopays({
+  token: String(environment.test.TOKEN),
+  mode: "production"
+});
+
+```
+#### Parâmetros:
+
+- `token`: (string): Token de autenticação fornecido pela Intopays.
+- `mode`: (string): Ambiente da aplicação. Pode ser:
+  - `production`: Ambiente de produção.
+  - `development`: Ambiente de testes.
+
+#### Retorno:
+
+- `IntopaysInstance`: Objeto Intopays com acesso às funcionalidades do SDK, como pix, webhooks, etc.
+
+
 ## Documentaçāo
 - [Pix](#pix)
   - [Criar Pix](#criar-pix)
@@ -125,9 +151,7 @@ const intopays = new Intopays();
 try {
   const response = await intopays.pix.search({
     debtorDocument: "12345678901",
-    status: "ACTIVE",
-    createdAfter: "2024-01-01T00:00:00Z",
-    createdBefore: "2024-12-31T23:59:59Z"
+    status: "ACTIVE"
   });
   console.log("Resultados da pesquisa:", response);
 } catch (error) {
