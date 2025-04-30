@@ -41,7 +41,7 @@ describe("PixService", () => {
 
   it("should list the last 100 pixs successfully", async() => {
     try {
-      const response = await intopays.pixs.find({
+      const response = await intopays.pixs.search({
         status: PixTransactionStatus.ACTIVE
       });
       expect(Array.isArray(response)).toBeTruthy();
@@ -54,7 +54,7 @@ describe("PixService", () => {
 
   it("should find a pix by id successfully", async() => {
     try {
-      const response = await intopays.pixs.findOne(Number(pixs[0].id));
+      const response = await intopays.pixs.find(Number(pixs[0].id));
       expect(response).toBeTruthy();
       expect(response.id).toBe(pixs[0].id);
       expect(response.status).toBe(PixTransactionStatus.ACTIVE);

@@ -18,4 +18,7 @@ export type IntopaysConstructor = {
   mode?: "production" | "development"
 };
 
+export * from "@/core/enums/IntegrationEnum";
+export * from "@/core/enums/PixTransactionStatus";
+
 export default Intopays;

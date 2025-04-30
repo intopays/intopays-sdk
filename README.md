@@ -21,7 +21,10 @@ npm install intopays
 bun install intopays
 ```
 ## Documentaçāo
-
+- [Pix](#pix)
+  - [Criar Pix](#criar-pix)
+  - [Encontrar Pix](#encontrar-pix)
+  - [Pesquisar Pix](#pesquisar-pix)
 - [Webhook](#webhook)
   - [Criar Webhook](#criar-webhook)
   - [Listar Webhooks](#listar-webhooks)
@@ -30,6 +33,116 @@ bun install intopays
   - [Webhook Signature](#webhook-signature)
   - [Recebimento de Evento de Boleto via Webhook](#recebimento-de-evento-de-boleto-via-webhook)
   - [Recebimento de Evento PIX via Webhook](#recebimento-de-evento-pix-via-webhook)
+
+## Pix
+
+## Criar pix
+
+Você pode criar cobranças Pix utilizando o SDK de forma simples. para bancos `Sicredi`, `Sicoob`, `Santander`, `Banco do Brasil` enter outros.
+
+##### Exemplo de Uso
+
+```javascript
+import { Intopays, IntegrationEnum } from "intopays";
+
+const intopays = new Intopays();
+const payload = {
+  calendarExpiration: 86400,
+  debtorName: "Lucas Lopes",
+  debtorDocument: "12345678901",
+  amountOriginal: "10.99",
+  amountModificationType: 0,
+  payerRequest: "Cobrança de serviço",
+  additionalInfos: [
+    {
+      name: "Campo 1",
+      value: "Informação Adicional do PSP-Recebedor"
+    }
+  ],
+  integrationType: IntegrationEnum.SICOOB
+};
+
+try {
+  const response = await intopays.pix.create(payload);
+  console.log("Pix gerado com sucesso:", response);
+} catch (error) {
+  console.error("Erro ao gerar Pix:", error);
+}
+```
+
+#### Parâmetros:
+
+- `amount`: Valor da cobrança em reais.
+- `debtorName`: Nome do pagador.
+- `debtorDocument`: CPF/CNPJ do pagador.
+- `payerRequest`: Descrição da cobrança.
+- `calendarExpiration`: Tempo em segundos para expirar
+
+#### Retorno:
+
+- `Pix`: Objeto com os dados da cobrança `Pix`, incluindo `qrcode`, `location`, `status` e `url`.
+
+
+## Encontrar Pix
+
+Você pode encontrar um Pix existente usando o ID de pagamento.
+
+##### Exemplo de Uso
+
+```javascript
+import { Intopays } from "intopays";
+
+const intopays = new Intopays();
+const pixId = 123;
+
+try {
+  const response = await intopays.pix.find(pixId);
+  console.log("Pix encontrado:", response);
+} catch (error) {
+  console.error("Erro ao encontrar Pix:", error);
+}
+```
+
+#### Parâmetros:
+
+- `pixId`: ID do Pix gerado anteriormente.
+
+#### Retorno:
+
+- `Pix`: Objeto com os dados da cobrança `Pix`, incluindo `qrcode`, `location`, `status` e `url`.
+
+## Pesquisar Pix
+
+Você pode pesquisar um Pix por CPF/CNPJ, status ou data.
+
+##### Exemplo de Uso
+
+```javascript
+import { Intopays } from "intopays";
+
+const intopays = new Intopays();
+
+try {
+  const response = await intopays.pix.search({
+    debtorDocument: "12345678901",
+    status: "ACTIVE",
+    createdAfter: "2024-01-01T00:00:00Z",
+    createdBefore: "2024-12-31T23:59:59Z"
+  });
+  console.log("Resultados da pesquisa:", response);
+} catch (error) {
+  console.error("Erro ao pesquisar Pix:", error);
+}
+```
+
+#### Parâmetros:
+
+- `debtorDocument`: (opcional): CPF ou CNPJ do pagador.
+- `status`: (opcional): Status da cobrança (ex: ACTIVE, COMPLETED).
+
+#### Retorno:
+
+- `Pix`: Lista de cobranças Pix que atendem aos critérios. Objeto com os dados da cobrança `Pix`, incluindo `qrcode`, `location`, `status` e `url`.
 
 ## Webhook
 

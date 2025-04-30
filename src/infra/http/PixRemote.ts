@@ -19,12 +19,12 @@ export class PixRemote {
   }
 
   @GetRequest("/v1/pixs")
-  public async find(@Query data?: Partial<Pix>): Promise<{ data: Array<Pix> }> {
+  public async search(@Query data?: Partial<Pix>): Promise<{ data: Array<Pix> }> {
     throw new Error("Method not implemented");
   }
 
   @GetRequest("/v1/pixs/:id")
-  public async findOne(@Param("id") id: number): Promise<{ data: Pix }> {
+  public async find(@Param("id") id: number): Promise<{ data: Pix }> {
     throw new Error("Method not implemented");
   }
 }
