@@ -17,7 +17,7 @@ describe("PixService", () => {
 
   it("should create a pix successfully", async() => {
     try {
-      const response = await intopays.pixs.create({
+      const response = await intopays.pix.create({
         calendarExpiration: 86400,
         debtorName: "Lucas Lopes",
         debtorDocument: "000.000.000-00",
@@ -41,7 +41,7 @@ describe("PixService", () => {
 
   it("should list the last 100 pixs successfully", async() => {
     try {
-      const response = await intopays.pixs.search({
+      const response = await intopays.pix.search({
         status: PixTransactionStatus.ACTIVE
       });
       expect(Array.isArray(response)).toBeTruthy();
@@ -54,7 +54,7 @@ describe("PixService", () => {
 
   it("should find a pix by id successfully", async() => {
     try {
-      const response = await intopays.pixs.find(Number(pixs[0].id));
+      const response = await intopays.pix.find(Number(pixs[0].id));
       expect(response).toBeTruthy();
       expect(response.id).toBe(pixs[0].id);
       expect(response.status).toBe(PixTransactionStatus.ACTIVE);
