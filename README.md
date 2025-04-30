@@ -185,7 +185,7 @@ const payload = {
 };
 
 try {
-  const response = await intopays.webhooks.create(payload);
+  const response = await intopays.webhook.create(payload);
   console.log("Webhook criado com sucesso:", response);
 } catch (error) {
   console.error("Erro ao criar webhook:", error);
@@ -213,7 +213,7 @@ import { Intopays } from "intopays";
 const intopays = new Intopays();
 
 try {
-  const response = await intopays.webhooks.find();
+  const response = await intopays.webhook.find();
   console.log("Webhooks encontrados:", response);
 } catch (error) {
   console.error("Erro ao listar webhooks:", error);
@@ -237,7 +237,7 @@ const intopays = new Intopays();
 const endpoint = "https://exemple.intopays.com/webhooks";
 
 try {
-  const response = await intopays.webhooks.find({ endpoint });
+  const response = await intopays.webhook.find({ endpoint });
   console.log("Webhooks encontrados com o endpoint especificado:", response);
 } catch (error) {
   console.error("Erro ao pesquisar webhooks:", error);
@@ -265,7 +265,7 @@ const intopays = new Intopays();
 
 try {
   const webhookId = 0;
-  const response = await intopays.webhooks.delete(webhookId);
+  const response = await intopays.webhook.delete(webhookId);
   console.log("Webhook excluído com sucesso:", response);
 } catch (error) {
   console.error("Erro ao excluir webhook:", error);
@@ -294,7 +294,7 @@ import { Intopays } from "intopays";
 const intopays = new Intopays();
 const xWebhookSignature = request.headers["x-webhook-signature"];
 const signature = "c1a4b404-ac83-4378-b60f-9be9bac1fc80";
-const isValid = intopays.webhooks.verifySignature(request.body, xWebhookSignature, signature);
+const isValid = intopays.webhook.verifySignature(request.body, xWebhookSignature, signature);
 
 if (isValid) {
     console.log("Assinatura do webhook válida");

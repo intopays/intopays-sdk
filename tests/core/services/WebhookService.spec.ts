@@ -20,7 +20,7 @@ describe("WebhookService", () => {
         endpoint: faker.internet.url()
       };
       try {
-        const response = await intopays.webhooks.create(payload) as any;
+        const response = await intopays.webhook.create(payload) as any;
         expect(response.endpoint).toBe(payload.endpoint);
         expect(response.signature).toBeTruthy();
       } catch (error) {
@@ -34,7 +34,7 @@ describe("WebhookService", () => {
         const payload = {
           endpoint: null // search a webhook
         };
-        const response = await intopays.webhooks.find(payload);
+        const response = await intopays.webhook.find(payload);
         expect(Array.isArray(response)).toBeTruthy();
         webhooks = response; // add webhooks to the next text
       } catch (error) {
@@ -47,7 +47,7 @@ describe("WebhookService", () => {
     it("should delete all registered webhooks successfully", async() => {
       try {
         for (const webhook of webhooks) {
-          const response = await intopays.webhooks.delete(webhook.id);
+          const response = await intopays.webhook.delete(webhook.id);
           expect(response).toBeFalsy();
         }
       } catch (error) {
@@ -75,7 +75,7 @@ describe("WebhookService", () => {
         name: "test"
       };
       const headers = { "x-webhook-signature": xWebhookSignature };
-      const received = intopays.webhooks.verifySignature(payload, headers["x-webhook-signature"], "signature");
+      const received = intopays.webhook.verifySignature(payload, headers["x-webhook-signature"], "signature");
       expect(received).toBe(true);
     });
 
@@ -84,7 +84,7 @@ describe("WebhookService", () => {
         name: "test2"
       };
       const headers = { "x-webhook-signature": xWebhookSignature };
-      const result = intopays.webhooks.verifySignature(payload, headers["x-webhook-signature"], "signature");
+      const result = intopays.webhook.verifySignature(payload, headers["x-webhook-signature"], "signature");
       expect(result).toBe(false);
     });
   });

@@ -4,11 +4,11 @@ import { PixService } from "@/core/services/PixService";
 import { PixFactory } from "./factories/PixFactory";
 
 export class Intopays {
-  public webhooks: WebhookService;
+  public webhook: WebhookService;
   public pix: PixService;
 
   public constructor(config: IntopaysConstructor) {
-    this.webhooks = WebhookFactory.createWebhookService(config);
+    this.webhook = WebhookFactory.createWebhookService(config);
     this.pix = PixFactory.createPixService(config);
   }
 }
