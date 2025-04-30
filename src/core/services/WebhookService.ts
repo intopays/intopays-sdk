@@ -1,24 +1,24 @@
 import crypto from "crypto";
 import { Webhook } from "@/core/models/Webhook";
-import { WebhookHttp } from "@/infra/http/WebhookHttp";
+import { WebhookRemote } from "@/infra/http/WebhookRemote";
 
 export class WebhookService {
   public constructor(
-    private readonly webhookHttp: WebhookHttp
+    private readonly remote: WebhookRemote
   ) {}
 
   public async create(data: { endpoint: string }): Promise<Webhook> {
-    const response = await this.webhookHttp.create(data);
+    const response = await this.remote.create(data);
     return response.data;
   }
 
   public async find(data?: { endpoint?: string | null }): Promise<Array<Webhook>> {
-    const response = await this.webhookHttp.find(data);
+    const response = await this.remote.find(data);
     return response.data;
   }
 
   public async delete(webhookId: number): Promise<Webhook> {
-    const response = await this.webhookHttp.delete(webhookId);
+    const response = await this.remote.delete(webhookId);
     return response.data;
   }
 

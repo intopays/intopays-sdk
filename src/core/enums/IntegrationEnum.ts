@@ -1,0 +1,9 @@
+export enum IntegrationEnum {
+  SICOOB = "SICOOB",
+  SICREDI = "SICREDI",
+  INTER = "INTER",
+  SANTANDER = "SANTANDER",
+  BANCODOBRASIL = "BANCODOBRASIL",
+  BRADESCO = "BRADESCO",
+  ITAU = "ITAU"
+}
