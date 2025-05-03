@@ -103,11 +103,14 @@ try {
 
 #### Parâmetros:
 
-- `amount`: Valor da cobrança em reais.
+- `amountOriginal`: O valor do pix (em reais).
 - `debtorName`: Nome do pagador.
 - `debtorDocument`: CPF/CNPJ do pagador.
 - `payerRequest`: Descrição da cobrança.
 - `calendarExpiration`: Tempo em segundos para expirar
+- `amountModificationType`: Tipo de modificação no valor da cobrança.
+- `additionalInfos`: Informações adicionais da cobrança, contendo nome e valor.
+- `integrationType`: Tipo de integração (use o enum IntegrationEnum para escolher).
 
 #### Retorno:
 
