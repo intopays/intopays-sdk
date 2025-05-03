@@ -188,7 +188,7 @@ const intopays = new Intopays();
 
 // Criação de um boleto
 const boleto = new Boleto({
-amount: 2.51,
+  amount: 2.51,
   dueDate: new Date(),
   daysAfterDueDateForCancellation: 30,
   payerDocument: "000.000.000-00",
