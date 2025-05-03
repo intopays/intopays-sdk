@@ -51,6 +51,11 @@ const intopays = new Intopays({
   - [Criar Pix](#criar-pix)
   - [Encontrar Pix](#encontrar-pix)
   - [Pesquisar Pix](#pesquisar-pix)
+- [Boleto](#boleto)
+  - [Criar Boleto](#criar-boleto)
+  - [Encontrar Boleto](#encontrar-boleto)
+  - [Pesquisar Boleto](#pesquisar-boleto)
+  - [Cancelar Boleto](#cancelar-boleto)
 - [Webhook](#webhook)
   - [Criar Webhook](#criar-webhook)
   - [Listar Webhooks](#listar-webhooks)
@@ -167,6 +172,201 @@ try {
 #### Retorno:
 
 - `Pix`: Lista de cobranças Pix que atendem aos critérios. Objeto com os dados da cobrança `Pix`, incluindo `qrcode`, `location`, `status` e `url`.
+
+## Boleto
+
+## Criar boleto
+
+Você pode criar boletos utilizando o SDK, com opções de `integração` com bancos como `Banco do Brasil`, `Bradesco`, `Itaú`, entre outros.
+
+##### Exemplo de Uso
+
+```javascript
+import { Intopays, StateEnum, DiscountEnum, InterestEnum, FineTypeEnum, IntegrationEnum } from "intopays";
+
+const intopays = new Intopays();
+
+// Criação de um boleto
+const boleto = new Boleto({
+amount: 2.51,
+  dueDate: new Date(),
+  daysAfterDueDateForCancellation: 30,
+  payerDocument: "000.000.000-00",
+  payerName: "Luffrs",
+  payerEmail: "email@intoapys.com",
+  payerPhone: "51999999999",
+  payerZipCode: "91760110",
+  payerNumber: "123",
+  payerComplement: "Apto 123",
+  payerNeighborhood: "Centro",
+  payerCity: "Salto",
+  payerState: StateEnum.AC,
+  payerAddress: "Rua Principal",
+  messageLine1: "Message line 1",
+  messageLine2: "Message line 2",
+  discount1Code: DiscountEnum.NO_DISCOUNT,
+  discount1Rate: 0,
+  discount1Value: 0,
+  discount1Date: new Date(),
+  discount2Code: DiscountEnum.NO_DISCOUNT,
+  discount2Rate: 0,
+  discount2Value: 10,
+  discount2Date: new Date(),
+  fineCode: FineTypeEnum.NO_FINE,
+  fineDate: null,
+  fineValue: 0,
+  fineRate: 0,
+  interestCode: InterestEnum.EXEMPT,
+  interestDate: null,
+  interestRate: 0,
+  interestValue: 0,
+  finalBeneficiaryName: "Final Beneficiary",
+  finalBeneficiaryDocument: "111.111.111-11",
+  finalBeneficiaryZipCode: "98765432",
+  finalBeneficiaryAddress: "Rua Final",
+  finalBeneficiaryNeighborhood: "Bairro Final",
+  finalBeneficiaryCity: "Final City", 
+  finalBeneficiaryState: StateEnum.AC,
+  integrationType: IntegrationEnum.SICOOB
+});
+
+// Envio do boleto para a criação
+try {
+  const response = await intopays.boleto.create(boleto);
+  console.log("Boleto gerado com sucesso:", response);
+} catch (error) {
+  console.error("Erro ao gerar Boleto:", error);
+}
+```
+
+#### Parâmetros:
+
+- `amount`: O valor do boleto (em reais).
+- `dueDate`: A data de vencimento do boleto.
+- `daysAfterDueDateForCancellation`: Número de dias após o vencimento para cancelamento do boleto.
+- `payerDocument`: O CPF ou CNPJ do pagador.
+- `payerName`: Nome do pagador.
+- `payerEmail`: E-mail do pagador.
+- `payerPhone`: Telefone do pagador.
+- `payerZipCode`: CEP do pagador.
+- `payerNumber`: Número do endereço do pagador.
+- `payerComplement`: Complemento do endereço do pagador.
+- `payerNeighborhood`: Bairro do pagador.
+- `payerCity`: Cidade do pagador.
+- `payerState`: Estado do pagador (use o enum StateEnum para escolher).
+- `payerAddress`: Endereço do pagador.
+- `messageLine1`: Mensagem personalizada (linha 1).
+- `messageLine2`: Mensagem personalizada (linha 2).
+- `discount1Code`: Código do desconto 1 (use o enum DiscountEnum para escolher).
+- `discount1Rate`: Taxa de desconto 1.
+- `discount1Value`: Valor do desconto 1.
+- `discount1Date`: Data do desconto 1.
+- `discount2Code`: Código do desconto 2 (use o enum DiscountEnum para escolher).
+- `discount2Rate`: Taxa de desconto 2.
+- `discount2Value`: Valor do desconto 2.
+- `discount2Date`: Data do desconto 2.
+- `fineCode`: Código de multa (use o enum FineTypeEnum para escolher).
+- `fineDate`: Data da multa.
+- `fineValue`: Valor da multa.
+- `fineRate`: Taxa da multa.
+- `interestCode`: Código de juros (use o enum InterestEnum para escolher).
+- `interestDate`: Data dos juros.
+- `interestRate`: Taxa de juros.
+- `interestValue`: Valor dos juros.
+- `finalBeneficiaryName`: Nome do beneficiário final.
+- `finalBeneficiaryDocument`: CPF ou CNPJ do beneficiário final.
+- `finalBeneficiaryZipCode`: CEP do beneficiário final.
+- `finalBeneficiaryAddress`: Endereço do beneficiário final.
+- `finalBeneficiaryNeighborhood`: Bairro do beneficiário final.
+- `finalBeneficiaryCity`: Cidade do beneficiário final.
+- `finalBeneficiaryState`: Estado do beneficiário final (use o enum StateEnum para escolher).
+- `integrationType`: Tipo de integração (use o enum IntegrationEnum para escolher).
+
+#### Retorno:
+
+`Boleto`: Objeto contendo os dados da cobrança do boleto, incluindo `barcode`, `boletoUrl`, `dueDate`, `amount`, `status`, entre outros.
+
+## Encontrar Boleto
+
+Você pode encontrar um boleto específico utilizando seu ID com o SDK de forma simples.
+
+##### Exemplo de Uso
+```javascript
+import { Intopays } from "intopays";
+
+const intopays = new Intopays();
+
+try {
+  const response = await intopays.boleto.find(123);
+  console.log("Boleto encontrado:", response);
+} catch (error) {
+  console.error("Erro ao encontrar boleto:", error);
+}
+```
+
+#### Parâmetros:
+- `id`: ID do boleto que será encontrado. Este ID é retornado ao criar o boleto.
+
+#### Retorno:
+- `Boleto`: Objeto contendo os dados do boleto, como id, amount, dueDate, status e outros detalhes relacionados.
+
+## Cancelar Boleto
+
+Você pode cancelar uma cobrança de boleto utilizando o SDK de forma simples.
+
+##### Exemplo de Uso
+
+```javascript
+import { Intopays } from "intopays";
+
+const intopays = new Intopays();
+
+try {
+  const response = await intopays.boleto.void(123);
+  console.log("Boleto cancelado com sucesso:", response);
+} catch (error) {
+  console.error("Erro ao cancelar boleto:", error);
+}
+```
+
+#### Parâmetros:
+
+- `id`: ID do boleto que será cancelado. Este ID é retornado ao criar o boleto.
+
+#### Retorno:
+
+- `Boleto`: Objeto com a confirmação do cancelamento do boleto, incluindo o status da operação e a mensagem de sucesso ou erro.
+
+## Pesquisar Boleto
+
+Você pode pesquisar boletos com base em diferentes critérios usando o SDK de forma simples.
+
+##### Exemplo de Uso
+
+```javascript
+import { Intopays } from "intopays";
+
+const intopays = new Intopays();
+
+try {
+  const response = await intopays.boleto.search({
+  payerName: "Luffrs",
+  dueDate: "2025-05-01"
+});
+  console.log("Boletos encontrados:", response);
+} catch (error) {
+  console.error("Erro ao pesquisar boletos:", error);
+}
+
+```
+
+#### Parâmetros:
+- `payerName`: Nome do pagador (opcional).
+- `dueDate`: Data de vencimento do boleto (opcional).
+- `status`: Status do boleto, como "PENDENTE", "PAGO", etc. (opcional).
+
+#### Retorno:
+- `Array<Boleto>`: Lista de objetos que representam os boletos encontrados com os critérios de pesquisa. Cada objeto de boleto pode incluir informações como `id`, `amount`, `dueDate`, `payerName`, `status`, entre outros detalhes.
 
 ## Webhook
 
