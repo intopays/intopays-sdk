@@ -1,6 +1,8 @@
 {
   "js/ts.implicitProjectConfig.experimentalDecorators": true,
   "cSpell.words": [
+    "Boleto",
+    "boletos",
     "intopays"
   ]
 }

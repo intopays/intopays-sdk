@@ -9,6 +9,12 @@ import { DiscountEnum } from "@/core/enums/DiscountEnum";
  * Representa um boleto bancário com todos os dados necessários para emissão e integração.
  */
 export class Boleto {
+  public constructor(data?: Partial<Boleto>) {
+    if (data) {
+      Object.assign(this, data);
+    }
+  }
+
   /** Identificador único do boleto */
   public id!: number;
 

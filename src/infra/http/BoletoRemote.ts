@@ -2,7 +2,7 @@ import axios from "axios";
 import { Body, GetRequest, HttpClient, Param, PatchRequest, PostRequest, Query } from "typewield";
 import { environment } from "@/infra/configs/environment";
 import { Boleto, IntopaysConstructor } from "@/app/Intopays";
-import { MessageResponse } from "@/infra/http/helpers/MessageResponse";
+import { PageResponse } from "@/infra/http/helpers/PageResponse";
 
 const axiosInstance = axios.create({ baseURL: environment.development.HOST });
 
@@ -19,17 +19,17 @@ export class BoletoRemote {
   }
 
   @GetRequest("/v1/boletos")
-  public async search(@Query data?: Partial<Boleto>): Promise<{ data: Array<Boleto> }> {
+  public async search(@Query data?: Partial<Boleto>): Promise<{ data: PageResponse<Boleto> }> {
     throw new Error("Method not implemented");
   }
 
   @GetRequest("/v1/boletos/:id")
-  public async find(@Param("id") id: number): Promise<{ data: Boleto }> {
+  public async find(@Param("id") id: number | string): Promise<{ data: Boleto }> {
     throw new Error("Method not implemented");
   }
 
   @PatchRequest("/v1/boletos/:id/cancel")
-  public async void(@Param("id") id: number): Promise<MessageResponse> {
+  public async void(@Param("id") id: number | string): Promise<{ data: Boleto }> {
     throw new Error("Method not implemented");
   }
 }
