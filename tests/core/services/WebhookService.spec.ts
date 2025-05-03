@@ -1,7 +1,6 @@
 import { faker } from "@faker-js/faker";
-import Intopays from "@/app/Intopays";
+import { Intopays, Webhook } from "@/app/Intopays";
 import { environment } from "@/infra/configs/environment";
-import { Webhook } from "../models/Webhook";
 
 describe("WebhookService", () => {
   describe("create", () => {

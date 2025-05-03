@@ -1,7 +1,7 @@
-import { WebhookService } from "@/core/services/WebhookService";
+import { PixFactory } from "@/app/factories/PixFactory";
 import { WebhookFactory } from "@/app/factories/WebhookFactory";
+import { WebhookService } from "@/core/services/WebhookService";
 import { PixService } from "@/core/services/PixService";
-import { PixFactory } from "./factories/PixFactory";
 
 export class Intopays {
   public webhook: WebhookService;
@@ -18,7 +18,18 @@ export type IntopaysConstructor = {
   mode?: "production" | "development"
 };
 
+// enums
 export * from "@/core/enums/IntegrationEnum";
 export * from "@/core/enums/PixTransactionStatus";
+export * from "@/core/enums/FineTypeEnum";
+export * from "@/core/enums/StateEnum";
+export * from "@/core/enums/InterestEnum";
+export * from "@/core/enums/PaymentStatus";
+
+// models
+export * from "@/core/models/Boleto";
+export * from "@/core/models/Pix";
+export * from "@/core/models/PixInfo";
+export * from "@/core/models/Webhook";
 
 export default Intopays;

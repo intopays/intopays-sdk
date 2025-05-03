@@ -1,17 +1,25 @@
 {
   "name": "intopays",
   "version": "1.2.0",
-  "description": "Intopays - Banking Payments",
+  "description": "Intopays - Gateway de integração bancária",
   "author": "Lucas Lopes",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "keywords": [
-    "typescript",
-    "decorators",
-    "logger",
-    "cache",
-    "request"
+    "api",
+    "sdk",
+    "integracao",
+    "gerar",
+    "pix",
+    "boleto",
+    "sicredi",
+    "sicoob",
+    "banco do brasil",
+    "santander",
+    "inter",
+    "bradesco",
+    "itau"
   ],
   "scripts": {
     "start": "npm run test:unit",

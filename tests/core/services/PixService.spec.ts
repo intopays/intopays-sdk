@@ -1,8 +1,5 @@
-import Intopays from "@/app/Intopays";
+import { Intopays, IntegrationEnum, PixTransactionStatus, Pix } from "@/app/Intopays";
 import { environment } from "@/infra/configs/environment";
-import { IntegrationEnum } from "@/core/enums/IntegrationEnum";
-import { PixTransactionStatus } from "@/core/enums/PixTransactionStatus";
-import { Pix } from "@/core/models/Pix";
 
 describe("PixService", () => {
   let intopays: Intopays;

@@ -1,0 +1,5 @@
+export enum InterestEnum {
+  AMOUNT_PER_DAY = "AMOUNT_PER_DAY",
+  MONTHLY_RATE = "MONTHLY_RATE",
+  EXEMPT = "EXEMPT"
+}
