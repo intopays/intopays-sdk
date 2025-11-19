@@ -1,6 +1,6 @@
 # INTOPAYS SDK (NodeJs)
 
-Para mais informações, visite nosso site: [Intopays](https://intopays.com)
+Para mais informações, visite nosso site: [https://intopays.com](https://intopays.com)
 
 ## Contato 
 <p>
